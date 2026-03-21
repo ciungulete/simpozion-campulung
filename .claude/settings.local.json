@@ -12,7 +12,9 @@
       "Bash(php artisan:*)",
       "Bash(npm run:*)",
       "Bash(vendor/bin/pint --dirty --format agent)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   },
   "enabledMcpjsonServers": [

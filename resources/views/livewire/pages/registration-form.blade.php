@@ -8,10 +8,10 @@ use App\Enums\Prefix;
 <div>
     {{-- Header --}}
     <div class="mb-10 text-center">
-        <div class="mb-1 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80">{{ config('simpozion.event_edition') }}</div>
         <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">{{ config('simpozion.event_name') }}</h1>
         <p class="mt-1 text-lg font-medium text-amber-400/90 sm:text-xl">{{ config('simpozion.event_title') }}</p>
         <p class="mt-0.5 text-sm italic text-white/50">{{ config('simpozion.event_subtitle') }}</p>
+        <div class="mt-3 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80">{{ config('simpozion.event_edition') }}</div>
         <div class="mt-3 flex items-center justify-center gap-3 text-xs text-white/40">
             <span>{{ config('simpozion.event_location') }}</span>
             <span class="text-amber-500/40">|</span>
