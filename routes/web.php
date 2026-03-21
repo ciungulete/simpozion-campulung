@@ -1,7 +1,18 @@
 <?php
 
+use App\Http\Middleware\SetLocale;
+use App\Livewire\RegistrationForm;
+use App\Models\Registration;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(SetLocale::class)->group(function () {
+    Route::livewire('/', RegistrationForm::class)
+        ->name('register');
+
+    Route::get('/payment/{registration:uuid}', function (Registration $registration) {
+        $registration->load('participants');
+        $locale = session('locale', 'ro');
+
+        return view('pages.payment', compact('registration', 'locale'));
+    })->name('payment');
 });

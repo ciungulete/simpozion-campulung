@@ -1,0 +1,65 @@
+<?php
+
+namespace App\Filament\Resources\Registrations;
+
+use App\Filament\Resources\Registrations\Pages\EditRegistration;
+use App\Filament\Resources\Registrations\Pages\ListRegistrations;
+use App\Filament\Resources\Registrations\Schemas\RegistrationForm;
+use App\Filament\Resources\Registrations\Tables\RegistrationsTable;
+use App\Models\Registration;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+class RegistrationResource extends Resource
+{
+    protected static ?string $model = Registration::class;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClipboardDocumentList;
+
+    protected static ?string $navigationLabel = 'Înregistrări';
+
+    protected static ?string $modelLabel = 'Înregistrare';
+
+    protected static ?string $pluralModelLabel = 'Înregistrări';
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->id() === 1;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->id() === 1;
+    }
+
+    public static function form(Schema $schema): Schema
+    {
+        return RegistrationForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return RegistrationsTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListRegistrations::route('/'),
+            'edit' => EditRegistration::route('/{record}/edit'),
+        ];
+    }
+}
