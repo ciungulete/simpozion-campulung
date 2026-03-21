@@ -19,7 +19,7 @@ class RegistrationConfirmation extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Confirmare Înregistrare - '.config('simpozion.event_name.ro'),
+            subject: 'Confirmare înregistrare - Simpozion Câmpulung',
         );
     }
 
