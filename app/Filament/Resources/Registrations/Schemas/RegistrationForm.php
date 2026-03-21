@@ -27,6 +27,12 @@ class RegistrationForm
                     ->numeric()
                     ->disabled()
                     ->suffix('lei'),
+                TextInput::make('paid_amount')
+                    ->label('Sumă plătită')
+                    ->numeric()
+                    ->default(0)
+                    ->suffix('lei')
+                    ->helperText('Introduceți suma plătită efectiv. Diferența va apărea ca "Rest de plată" în tabel.'),
                 Textarea::make('admin_notes')
                     ->label('Note admin')
                     ->rows(3)

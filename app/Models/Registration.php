@@ -21,7 +21,13 @@ class Registration extends Model
         return [
             'payment_status' => PaymentStatus::class,
             'total_amount' => 'integer',
+            'paid_amount' => 'integer',
         ];
+    }
+
+    public function remainingAmount(): int
+    {
+        return max(0, $this->total_amount - $this->paid_amount);
     }
 
     protected static function booted(): void

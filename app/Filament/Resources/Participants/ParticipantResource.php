@@ -2,15 +2,11 @@
 
 namespace App\Filament\Resources\Participants;
 
-use App\Filament\Resources\Participants\Pages\CreateParticipant;
-use App\Filament\Resources\Participants\Pages\EditParticipant;
 use App\Filament\Resources\Participants\Pages\ListParticipants;
-use App\Filament\Resources\Participants\Schemas\ParticipantForm;
 use App\Filament\Resources\Participants\Tables\ParticipantsTable;
 use App\Models\Participant;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
@@ -26,9 +22,9 @@ class ParticipantResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Participanți';
 
-    public static function form(Schema $schema): Schema
+    public static function canCreate(): bool
     {
-        return ParticipantForm::configure($schema);
+        return false;
     }
 
     public static function table(Table $table): Table
@@ -36,19 +32,10 @@ class ParticipantResource extends Resource
         return ParticipantsTable::configure($table);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
     public static function getPages(): array
     {
         return [
             'index' => ListParticipants::route('/'),
-            'create' => CreateParticipant::route('/create'),
-            'edit' => EditParticipant::route('/{record}/edit'),
         ];
     }
 }

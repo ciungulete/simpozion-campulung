@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Registrations;
 
-use App\Filament\Resources\Registrations\Pages\CreateRegistration;
 use App\Filament\Resources\Registrations\Pages\EditRegistration;
 use App\Filament\Resources\Registrations\Pages\ListRegistrations;
 use App\Filament\Resources\Registrations\Schemas\RegistrationForm;
@@ -26,6 +25,21 @@ class RegistrationResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Înregistrări';
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->id() === 1;
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->id() === 1;
+    }
+
     public static function form(Schema $schema): Schema
     {
         return RegistrationForm::configure($schema);
@@ -38,16 +52,13 @@ class RegistrationResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => ListRegistrations::route('/'),
-            'create' => CreateRegistration::route('/create'),
             'edit' => EditRegistration::route('/{record}/edit'),
         ];
     }

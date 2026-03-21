@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\Registrations\Tables;
 
 use App\Enums\PaymentStatus;
+use App\Models\Registration;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class RegistrationsTable
@@ -28,9 +28,20 @@ class RegistrationsTable
                     ->label('Total')
                     ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
                     ->sortable(),
+                TextColumn::make('paid_amount')
+                    ->label('Plătit')
+                    ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
+                    ->sortable(),
+                TextColumn::make('remaining')
+                    ->label('Rest de plată')
+                    ->getStateUsing(fn (Registration $record) => $record->remainingAmount())
+                    ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
+                    ->color(fn (int $state) => $state > 0 ? 'danger' : 'success')
+                    ->weight(fn (int $state) => $state > 0 ? 'bold' : null),
                 TextColumn::make('payment_status')
                     ->label('Status plată')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn (PaymentStatus $state) => $state->color()),
                 TextColumn::make('admin_notes')
                     ->label('Note')
                     ->limit(30)
@@ -41,11 +52,6 @@ class RegistrationsTable
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
-            ->filters([
-                SelectFilter::make('payment_status')
-                    ->options(PaymentStatus::class)
-                    ->label('Status plată'),
-            ])
             ->recordActions([
                 EditAction::make(),
             ])
