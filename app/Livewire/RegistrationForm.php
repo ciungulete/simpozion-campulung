@@ -7,6 +7,7 @@ use App\Enums\Prefix;
 use App\Mail\RegistrationConfirmation;
 use App\Models\Participant;
 use App\Models\Registration;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -87,6 +88,12 @@ class RegistrationForm extends Component
     }
 
     #[Computed]
+    public function isRegistrationOpen(): bool
+    {
+        return Setting::registrationOpen();
+    }
+
+    #[Computed]
     public function totalAmount(): int
     {
         $total = 0;
@@ -100,6 +107,10 @@ class RegistrationForm extends Component
 
     public function submit(): void
     {
+        if (! $this->isRegistrationOpen) {
+            return;
+        }
+
         $this->validate();
 
         $registration = DB::transaction(function () {
