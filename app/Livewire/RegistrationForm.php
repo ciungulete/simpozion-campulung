@@ -21,9 +21,20 @@ class RegistrationForm extends Component
     /** @var array<int, array<string, mixed>> */
     public array $participants = [];
 
+    public string $locale = 'ro';
+
     public function mount(): void
     {
+        $this->locale = session('locale', 'ro');
+        app()->setLocale($this->locale);
         $this->addParticipant();
+    }
+
+    public function switchLocale(string $locale): void
+    {
+        $this->locale = in_array($locale, ['ro', 'en']) ? $locale : 'ro';
+        session(['locale' => $this->locale]);
+        app()->setLocale($this->locale);
     }
 
     public function addParticipant(): void

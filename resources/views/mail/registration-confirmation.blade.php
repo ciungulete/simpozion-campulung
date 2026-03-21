@@ -1,7 +1,7 @@
 <h1>Confirmare Înregistrare</h1>
-<h2>{{ config('simpozion.event_name') }} — {{ config('simpozion.event_title') }}</h2>
-<p><em>{{ config('simpozion.event_subtitle') }}</em></p>
-<p>{{ config('simpozion.event_location') }} | {{ config('simpozion.event_date') }} | {{ config('simpozion.event_edition') }}</p>
+<h2>{{ config('simpozion.event_name.ro') }} — {{ config('simpozion.event_title.ro') }}</h2>
+<p><em>{{ config('simpozion.event_subtitle.ro') }}</em></p>
+<p>{{ config('simpozion.event_location') }} | {{ config('simpozion.event_date.ro') }} | {{ config('simpozion.event_edition.ro') }}</p>
 
 <p>Referință: <strong>{{ $registration->shortReference() }}</strong></p>
 
