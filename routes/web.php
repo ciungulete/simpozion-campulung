@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(SetLocale::class)->group(function () {
     Route::livewire('/', RegistrationForm::class)
-        ->name('register')
-        ->middleware('throttle:5,60');
+        ->name('register');
 
     Route::get('/payment/{registration:uuid}', function (Registration $registration) {
         $registration->load('participants');

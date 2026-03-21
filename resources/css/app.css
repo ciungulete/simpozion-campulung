@@ -16,10 +16,10 @@
 }
 
 /* Flux UI label visibility on dark background */
-.dark [data-flux-label] {
+[data-flux-label] {
     color: rgb(217 199 163) !important;
 }
 
-.dark [data-flux-description] {
+[data-flux-description] {
     color: rgb(161 161 170) !important;
 }
