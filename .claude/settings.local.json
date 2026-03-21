@@ -6,7 +6,12 @@
       "Bash(./setup)",
       "mcp__laravel-boost__application-info",
       "mcp__laravel-boost__database-schema",
-      "Skill(office-hours)"
+      "Skill(office-hours)",
+      "mcp__laravel-boost__search-docs",
+      "Bash(composer require:*)",
+      "Bash(php artisan:*)",
+      "Bash(npm run:*)",
+      "Bash(vendor/bin/pint --dirty --format agent)"
     ]
   },
   "enabledMcpjsonServers": [
