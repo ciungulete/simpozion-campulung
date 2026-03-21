@@ -75,7 +75,26 @@
                 <div class="rounded-xl border border-white/[0.06] bg-white/[0.03] p-5">
                     <h3 class="mb-3 text-sm font-semibold text-amber-400">{{ __('Bank transfer') }}</h3>
                     <div class="space-y-2 text-xs text-white/60">
-                        <div><span class="text-white/30">IBAN:</span> <span class="font-mono font-medium text-white/90">{{ config('simpozion.payment.iban') }}</span></div>
+                        <div x-data="{ copied: false }"
+                             class="group cursor-pointer rounded-lg px-2 py-1 -mx-2 transition hover:bg-white/[0.04]"
+                             x-on:click="
+                                 navigator.clipboard.writeText('{{ config('simpozion.payment.iban') }}');
+                                 copied = true;
+                                 setTimeout(() => copied = false, 2000);
+                             ">
+                            <span class="text-white/30">IBAN:</span>
+                            <span class="font-mono font-medium text-white/90">{{ config('simpozion.payment.iban') }}</span>
+                            <span x-show="!copied" class="ml-1.5 inline-block text-white/20 transition group-hover:text-amber-400/60">
+                                <svg class="inline size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" /></svg>
+                            </span>
+                            <span x-show="copied" x-cloak
+                                  x-transition:enter="transition ease-out duration-200"
+                                  x-transition:enter-start="opacity-0 scale-95"
+                                  x-transition:enter-end="opacity-100 scale-100"
+                                  class="ml-1.5 text-[11px] font-semibold text-amber-400">
+                                IBAN copiat ✓
+                            </span>
+                        </div>
                         <div><span class="text-white/30">{{ __('Account holder') }}:</span> <span class="font-medium text-white/90">{{ config('simpozion.payment.account_holder') }}</span></div>
                         <div><span class="text-white/30">{{ __('Bank') }}:</span> <span class="font-medium text-white/90">{{ config('simpozion.payment.bank_name') }}</span></div>
                         <div><span class="text-white/30">{{ __('Payment reference') }}:</span> <span class="font-mono font-medium text-white/90">{{ $registration->shortReference() }}</span></div>
