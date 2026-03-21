@@ -159,7 +159,7 @@ class RegistrationForm extends Component
             $rules["participants.{$index}.prefix"] = ['required', new Enum(Prefix::class)];
             $rules["participants.{$index}.full_name"] = ['required', 'string', 'max:255'];
             $rules["participants.{$index}.degree"] = ['required', new Enum(Degree::class)];
-            $rules["participants.{$index}.dignity"] = ['required', 'string', 'max:255'];
+            $rules["participants.{$index}.dignity"] = ['nullable', 'string', 'max:255'];
             $rules["participants.{$index}.lodge_name"] = ['required', 'string', 'max:255'];
             $rules["participants.{$index}.lodge_number"] = ['required', 'integer', 'min:1'];
             $rules["participants.{$index}.orient"] = ['required', 'string', 'max:255'];

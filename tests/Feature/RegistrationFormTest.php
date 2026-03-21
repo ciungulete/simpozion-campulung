@@ -39,7 +39,6 @@ it('can remove a participant when multiple exist', function () {
 it('validates required fields', function () {
     Livewire::test(RegistrationForm::class)
         ->set('participants.0.full_name', '')
-        ->set('participants.0.dignity', '')
         ->set('participants.0.lodge_name', '')
         ->set('participants.0.lodge_number', '')
         ->set('participants.0.orient', '')
@@ -48,7 +47,6 @@ it('validates required fields', function () {
         ->call('submit')
         ->assertHasErrors([
             'participants.0.full_name',
-            'participants.0.dignity',
             'participants.0.lodge_name',
             'participants.0.lodge_number',
             'participants.0.orient',
