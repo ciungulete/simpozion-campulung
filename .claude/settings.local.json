@@ -11,7 +11,8 @@
       "Bash(composer require:*)",
       "Bash(php artisan:*)",
       "Bash(npm run:*)",
-      "Bash(vendor/bin/pint --dirty --format agent)"
+      "Bash(vendor/bin/pint --dirty --format agent)",
+      "Bash(git add:*)"
     ]
   },
   "enabledMcpjsonServers": [

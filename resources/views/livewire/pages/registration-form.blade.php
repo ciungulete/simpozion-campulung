@@ -8,11 +8,23 @@ use App\Enums\Prefix;
 <div>
     {{-- Header --}}
     <div class="mb-10 text-center">
-        <div class="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80">Formular de Înregistrare</div>
-        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">{{ config('simpozion.event_name') }}</h1>
+        <div class="mb-1 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80">{{ config('simpozion.event_edition') }}</div>
+        <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">{{ config('simpozion.event_name') }}</h1>
+        <p class="mt-1 text-lg font-medium text-amber-400/90 sm:text-xl">{{ config('simpozion.event_title') }}</p>
+        <p class="mt-0.5 text-sm italic text-white/50">{{ config('simpozion.event_subtitle') }}</p>
+        <div class="mt-3 flex items-center justify-center gap-3 text-xs text-white/40">
+            <span>{{ config('simpozion.event_location') }}</span>
+            <span class="text-amber-500/40">|</span>
+            <span>{{ config('simpozion.event_date') }}</span>
+        </div>
 
-        @if(file_exists(public_path(config('simpozion.pdf_program_path'))))
-            <a href="{{ asset(config('simpozion.pdf_program_path')) }}"
+        @php
+            $programPath = storage_path('app/public/program.pdf');
+            $hasProgram = file_exists($programPath);
+        @endphp
+
+        @if($hasProgram)
+            <a href="{{ asset('storage/program.pdf') }}"
                target="_blank"
                class="mt-6 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-5 py-2 text-sm font-medium text-amber-300 transition hover:border-amber-500/40 hover:bg-amber-500/20">
                 <flux:icon.document-text variant="mini" class="size-4" />
@@ -32,7 +44,8 @@ use App\Enums\Prefix;
                     </div>
                     @if(count($participants) > 1)
                         <button type="button"
-                                wire:click="removeParticipant({{ $index }})"
+                                x-data
+                                x-on:click="if (confirm('Sigur doriți să eliminați acest participant?')) { $wire.removeParticipant({{ $index }}) }"
                                 class="rounded-lg px-2.5 py-1 text-xs text-red-400/70 transition hover:bg-red-500/10 hover:text-red-400">
                             <flux:icon.trash variant="mini" class="size-4" />
                         </button>

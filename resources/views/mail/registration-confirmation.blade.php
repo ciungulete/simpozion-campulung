@@ -1,4 +1,7 @@
-<h1>Confirmare Înregistrare - {{ config('simpozion.event_name') }}</h1>
+<h1>Confirmare Înregistrare</h1>
+<h2>{{ config('simpozion.event_name') }} — {{ config('simpozion.event_title') }}</h2>
+<p><em>{{ config('simpozion.event_subtitle') }}</em></p>
+<p>{{ config('simpozion.event_location') }} | {{ config('simpozion.event_date') }} | {{ config('simpozion.event_edition') }}</p>
 
 <p>Referință: <strong>{{ $registration->shortReference() }}</strong></p>
 
@@ -54,12 +57,20 @@
         <li>IBAN: {{ config('simpozion.payment.iban') }}</li>
         <li>Titular: {{ config('simpozion.payment.account_holder') }}</li>
         <li>Bancă: {{ config('simpozion.payment.bank_name') }}</li>
-        <li>Referință: {{ $registration->shortReference() }}</li>
+        <li>Referință plată: {{ $registration->shortReference() }}</li>
     </ul>
 
-    <p><strong>Revolut:</strong> <a href="{{ config('simpozion.payment.revolut_link') }}">{{ config('simpozion.payment.revolut_link') }}</a></p>
+    <p><strong>Revolut:</strong> <a href="{{ config('simpozion.payment.revolut_link') }}">Plătește cu Revolut</a></p>
 @endif
 
 <p>
     <a href="{{ route('payment', $registration) }}">Vizualizează pagina de confirmare</a>
 </p>
+
+@if(config('simpozion.whatsapp_group_link'))
+    <hr>
+    <p>
+        Pentru a fi la curent cu toate detaliile privind organizarea simpozionului, vă invităm să vă alăturați grupului nostru de WhatsApp:
+        <a href="{{ config('simpozion.whatsapp_group_link') }}">Alătură-te grupului</a>
+    </p>
+@endif

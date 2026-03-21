@@ -121,9 +121,8 @@ class RegistrationForm extends Component
         $registration->load('participants');
 
         try {
-            foreach ($registration->participants as $participant) {
-                Mail::to($participant->email)->send(new RegistrationConfirmation($registration));
-            }
+            $firstParticipant = $registration->participants->first();
+            Mail::to($firstParticipant->email)->send(new RegistrationConfirmation($registration));
         } catch (\Throwable $e) {
             Log::error('Failed to send registration confirmation email', [
                 'registration_id' => $registration->id,
