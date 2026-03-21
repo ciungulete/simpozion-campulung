@@ -90,7 +90,7 @@ use App\Enums\Prefix;
                     </div>
 
                     {{-- Lodge + Number + Orient --}}
-                    <div class="grid grid-cols-2 gap-4 sm:grid-cols-[1fr_70px_1fr]">
+                    <div class="grid grid-cols-[70px_1fr] gap-4 sm:grid-cols-[1fr_90px_1fr]">
                         <div class="col-span-2 sm:col-span-1">
                             <flux:input wire:model="participants.{{ $index }}.lodge_name" :label="__('Lodge Name')" />
                         </div>
