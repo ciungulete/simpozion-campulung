@@ -20,10 +20,24 @@ class RegistrationsTable
                     ->label('Referință')
                     ->formatStateUsing(fn (string $state) => strtoupper(substr($state, 0, 8)))
                     ->searchable(),
-                TextColumn::make('participants_count')
-                    ->counts('participants')
+                TextColumn::make('participants.full_name')
                     ->label('Participanți')
-                    ->sortable(),
+                    ->searchable()
+                    ->listWithLineBreaks()
+                    ->limitList(2)
+                    ->expandableLimitedList(),
+                TextColumn::make('participants.email')
+                    ->label('Email')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('participants.phone')
+                    ->label('Telefon')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('participants.lodge_name')
+                    ->label('Loja')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('total_amount')
                     ->label('Total')
                     ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
