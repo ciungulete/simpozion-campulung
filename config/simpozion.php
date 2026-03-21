@@ -23,10 +23,34 @@ return [
         'en' => env('SIMPOZION_EVENT_DATE_EN', 'May 23, 2026'),
     ],
 
-    'prices' => [
-        'friday_dinner' => 200,
-        'symposium_lunch' => 200,
-        'ball' => 350,
+    'events' => [
+        'friday_dinner' => [
+            'price' => 200,
+            'datetime' => [
+                'ro' => env('SIMPOZION_FRIDAY_DINNER_DATETIME', 'Vineri, 22 mai 2026, ora 19:00'),
+                'en' => env('SIMPOZION_FRIDAY_DINNER_DATETIME_EN', 'Friday, May 22, 2026, 7:00 PM'),
+            ],
+        ],
+        'symposium_lunch' => [
+            'price' => 200,
+            'datetime' => [
+                'ro' => env('SIMPOZION_SYMPOSIUM_DATETIME', 'Sâmbătă, 23 mai 2026, ora 10:00'),
+                'en' => env('SIMPOZION_SYMPOSIUM_DATETIME_EN', 'Saturday, May 23, 2026, 10:00 AM'),
+            ],
+        ],
+        'ritual' => [
+            'datetime' => [
+                'ro' => env('SIMPOZION_RITUAL_DATETIME', 'Sâmbătă, 23 mai 2026, ora 16:00'),
+                'en' => env('SIMPOZION_RITUAL_DATETIME_EN', 'Saturday, May 23, 2026, 4:00 PM'),
+            ],
+        ],
+        'ball' => [
+            'price' => 350,
+            'datetime' => [
+                'ro' => env('SIMPOZION_BALL_DATETIME', 'Sâmbătă, 23 mai 2026, ora 20:00'),
+                'en' => env('SIMPOZION_BALL_DATETIME_EN', 'Saturday, May 23, 2026, 8:00 PM'),
+            ],
+        ],
     ],
 
     'payment' => [

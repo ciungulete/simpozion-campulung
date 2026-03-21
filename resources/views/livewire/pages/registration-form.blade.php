@@ -145,7 +145,8 @@ use App\Enums\Prefix;
                             <div class="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
                                 <div class="min-w-0 flex-1">
                                     <div class="text-sm font-medium text-white/90">{{ __('Friday Dinner') }}</div>
-                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.prices.friday_dinner') }} {{ __('lei / person') }}</div>
+                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.events.friday_dinner.price') }} {{ __('lei / person') }}</div>
+                                    <div class="text-[11px] text-white/30">{{ config("simpozion.events.friday_dinner.datetime.{$locale}") }}</div>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <button type="button" wire:click="decrementCount({{ $index }}, 'friday_dinner_count')"
@@ -164,7 +165,8 @@ use App\Enums\Prefix;
                             <div class="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
                                 <div class="min-w-0 flex-1">
                                     <div class="text-sm font-medium text-white/90">{{ __('Symposium + Saturday Lunch') }}</div>
-                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.prices.symposium_lunch') }} {{ __('lei / person') }}</div>
+                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.events.symposium_lunch.price') }} {{ __('lei / person') }}</div>
+                                    <div class="text-[11px] text-white/30">{{ config("simpozion.events.symposium_lunch.datetime.{$locale}") }}</div>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <button type="button" wire:click="decrementCount({{ $index }}, 'symposium_lunch_count')"
@@ -184,6 +186,7 @@ use App\Enums\Prefix;
                                 <div class="min-w-0 flex-1">
                                     <div class="text-sm font-medium text-white/90">{{ __('Ritual Session Participation') }}</div>
                                     <div class="text-xs text-white/40">{{ __('No cost') }}</div>
+                                    <div class="text-[11px] text-white/30">{{ config("simpozion.events.ritual.datetime.{$locale}") }}</div>
                                 </div>
                                 <label class="relative inline-flex cursor-pointer items-center">
                                     <input type="checkbox"
@@ -197,7 +200,8 @@ use App\Enums\Prefix;
                             <div class="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
                                 <div class="min-w-0 flex-1">
                                     <div class="text-sm font-medium text-white/90">{{ __('Ball Participation') }}</div>
-                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.prices.ball') }} {{ __('lei / person') }}</div>
+                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.events.ball.price') }} {{ __('lei / person') }}</div>
+                                    <div class="text-[11px] text-white/30">{{ config("simpozion.events.ball.datetime.{$locale}") }}</div>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <button type="button" wire:click="decrementCount({{ $index }}, 'ball_count')"

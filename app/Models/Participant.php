@@ -63,7 +63,11 @@ class Participant extends Model
      */
     public static function computeCost(array $data, ?array $prices = null): int
     {
-        $prices ??= config('simpozion.prices');
+        $prices ??= [
+            'friday_dinner' => config('simpozion.events.friday_dinner.price'),
+            'symposium_lunch' => config('simpozion.events.symposium_lunch.price'),
+            'ball' => config('simpozion.events.ball.price'),
+        ];
 
         return (($data['friday_dinner_count'] ?? 0) * $prices['friday_dinner'])
             + (($data['symposium_lunch_count'] ?? 0) * $prices['symposium_lunch'])

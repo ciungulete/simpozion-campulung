@@ -44,16 +44,16 @@
 
                     <div class="mt-3 space-y-1 text-xs text-white/60">
                         @if($participant->friday_dinner_count > 0)
-                            <div>{{ __('Friday Dinner') }}: {{ $participant->friday_dinner_count }} {{ __('persons') }} × {{ config('simpozion.prices.friday_dinner') }} lei = {{ $participant->friday_dinner_count * config('simpozion.prices.friday_dinner') }} lei</div>
+                            <div>{{ __('Friday Dinner') }}: {{ $participant->friday_dinner_count }} {{ __('persons') }} × {{ config('simpozion.events.friday_dinner.price') }} lei = {{ $participant->friday_dinner_count * config('simpozion.events.friday_dinner.price') }} lei</div>
                         @endif
                         @if($participant->symposium_lunch_count > 0)
-                            <div>{{ __('Symposium + Saturday Lunch') }}: {{ $participant->symposium_lunch_count }} {{ __('persons') }} × {{ config('simpozion.prices.symposium_lunch') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.prices.symposium_lunch') }} lei</div>
+                            <div>{{ __('Symposium + Saturday Lunch') }}: {{ $participant->symposium_lunch_count }} {{ __('persons') }} × {{ config('simpozion.events.symposium_lunch.price') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.events.symposium_lunch.price') }} lei</div>
                         @endif
                         @if($participant->ritual_participation)
                             <div>{{ __('Ritual Session Participation_label') }}: {{ __('Yes') }}</div>
                         @endif
                         @if($participant->ball_count > 0)
-                            <div>{{ __('Ball Participation') }}: {{ $participant->ball_count }} {{ __('persons') }} × {{ config('simpozion.prices.ball') }} lei = {{ $participant->ball_count * config('simpozion.prices.ball') }} lei</div>
+                            <div>{{ __('Ball Participation') }}: {{ $participant->ball_count }} {{ __('persons') }} × {{ config('simpozion.events.ball.price') }} lei = {{ $participant->ball_count * config('simpozion.events.ball.price') }} lei</div>
                         @endif
                         @if($participant->observations)
                             <div class="mt-1"><span class="text-white/30">{{ __('Observations') }}:</span> {{ $participant->observations }}</div>

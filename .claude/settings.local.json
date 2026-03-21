@@ -17,7 +17,10 @@
       "Bash(git push:*)",
       "Bash(B=~/.claude/skills/gstack/browse/dist/browse $B goto \"https://simpozion.test\")",
       "Bash(B=~/.claude/skills/gstack/browse/dist/browse $B screenshot /tmp/simpozion-labels.png)",
-      "Bash(grep -r 'class Section' /Users/ciungulete/Sites/simpozion/vendor/filament/ --include=*.php -l)"
+      "Bash(grep -r 'class Section' /Users/ciungulete/Sites/simpozion/vendor/filament/ --include=*.php -l)",
+      "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.friday_dinner''\\)/config\\(''simpozion.events.friday_dinner.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)",
+      "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.symposium_lunch''\\)/config\\(''simpozion.events.symposium_lunch.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)",
+      "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.ball''\\)/config\\(''simpozion.events.ball.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)"
     ]
   },
   "enabledMcpjsonServers": [

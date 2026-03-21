@@ -24,16 +24,16 @@
         <p><strong>Evenimente:</strong></p>
         <ul>
             @if($participant->friday_dinner_count > 0)
-                <li>Cină vineri: {{ $participant->friday_dinner_count }} pers × {{ config('simpozion.prices.friday_dinner') }} lei = {{ $participant->friday_dinner_count * config('simpozion.prices.friday_dinner') }} lei</li>
+                <li>Cină vineri: {{ $participant->friday_dinner_count }} pers × {{ config('simpozion.events.friday_dinner.price') }} lei = {{ $participant->friday_dinner_count * config('simpozion.events.friday_dinner.price') }} lei</li>
             @endif
             @if($participant->symposium_lunch_count > 0)
-                <li>Simpozion + Prânz: {{ $participant->symposium_lunch_count }} pers × {{ config('simpozion.prices.symposium_lunch') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.prices.symposium_lunch') }} lei</li>
+                <li>Simpozion + Prânz: {{ $participant->symposium_lunch_count }} pers × {{ config('simpozion.events.symposium_lunch.price') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.events.symposium_lunch.price') }} lei</li>
             @endif
             @if($participant->ritual_participation)
                 <li>Participare ținută rituală: Da</li>
             @endif
             @if($participant->ball_count > 0)
-                <li>Bal: {{ $participant->ball_count }} pers × {{ config('simpozion.prices.ball') }} lei = {{ $participant->ball_count * config('simpozion.prices.ball') }} lei</li>
+                <li>Bal: {{ $participant->ball_count }} pers × {{ config('simpozion.events.ball.price') }} lei = {{ $participant->ball_count * config('simpozion.events.ball.price') }} lei</li>
             @endif
         </ul>
 
