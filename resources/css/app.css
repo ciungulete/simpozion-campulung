@@ -14,3 +14,12 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* Flux UI label visibility on dark background */
+.dark [data-flux-label] {
+    color: rgb(217 199 163) !important;
+}
+
+.dark [data-flux-description] {
+    color: rgb(161 161 170) !important;
+}
