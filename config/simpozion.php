@@ -47,8 +47,8 @@ return [
         'ball' => [
             'price' => 350,
             'datetime' => [
-                'ro' => env('SIMPOZION_BALL_DATETIME', 'Sâmbătă, 23 mai 2026, ora 20:00'),
-                'en' => env('SIMPOZION_BALL_DATETIME_EN', 'Saturday, May 23, 2026, 8:00 PM'),
+                'ro' => env('SIMPOZION_BALL_DATETIME', 'Sâmbătă, 23 mai 2026, ora 19:00'),
+                'en' => env('SIMPOZION_BALL_DATETIME_EN', 'Saturday, May 23, 2026, 7:00 PM'),
             ],
         ],
     ],
