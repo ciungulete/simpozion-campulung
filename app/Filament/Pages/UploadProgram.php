@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use BackedEnum;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Schemas\Schema;
@@ -35,14 +36,28 @@ class UploadProgram extends Page
         return $schema
             ->statePath('data')
             ->components([
-                FileUpload::make('program')
-                    ->label('Program PDF')
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(10240)
-                    ->disk('public')
-                    ->directory('')
-                    ->visibility('public')
-                    ->helperText('Încărcați fișierul PDF cu programul evenimentului. Acesta va fi disponibil pentru descărcare pe pagina de înregistrare.'),
+                Section::make('Program în Română')
+                    ->schema([
+                        FileUpload::make('program_ro')
+                            ->label('Program PDF (Română)')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->maxSize(10240)
+                            ->disk('public')
+                            ->directory('')
+                            ->visibility('public')
+                            ->helperText('Programul în limba română. Va fi afișat utilizatorilor care au selectat limba română.'),
+                    ]),
+                Section::make('Program in English')
+                    ->schema([
+                        FileUpload::make('program_en')
+                            ->label('Program PDF (English)')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->maxSize(10240)
+                            ->disk('public')
+                            ->directory('')
+                            ->visibility('public')
+                            ->helperText('The program in English. Displayed to users who selected the English language.'),
+                    ]),
             ]);
     }
 
@@ -50,26 +65,34 @@ class UploadProgram extends Page
     {
         $data = $this->form->getState();
 
-        if (! empty($data['program'])) {
-            $uploadedPath = $data['program'];
+        foreach (['ro', 'en'] as $lang) {
+            $key = "program_{$lang}";
+            $filename = "program-{$lang}.pdf";
 
-            if (Storage::disk('public')->exists('program.pdf')) {
-                Storage::disk('public')->delete('program.pdf');
+            if (! empty($data[$key])) {
+                if (Storage::disk('public')->exists($filename)) {
+                    Storage::disk('public')->delete($filename);
+                }
+
+                Storage::disk('public')->move($data[$key], $filename);
             }
-
-            Storage::disk('public')->move($uploadedPath, 'program.pdf');
         }
 
         Notification::make()
-            ->title('Programul a fost încărcat cu succes!')
+            ->title('Programele au fost încărcate cu succes!')
             ->success()
             ->send();
 
         $this->form->fill();
     }
 
-    public function hasExistingProgram(): bool
+    public function hasProgramRo(): bool
     {
-        return Storage::disk('public')->exists('program.pdf');
+        return Storage::disk('public')->exists('program-ro.pdf');
+    }
+
+    public function hasProgramEn(): bool
+    {
+        return Storage::disk('public')->exists('program-en.pdf');
     }
 }

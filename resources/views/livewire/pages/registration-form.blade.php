@@ -33,12 +33,12 @@ use App\Enums\Prefix;
         </div>
 
         @php
-            $programPath = storage_path('app/public/program.pdf');
-            $hasProgram = file_exists($programPath);
+            $programFile = "program-{$locale}.pdf";
+            $hasProgram = file_exists(storage_path("app/public/{$programFile}"));
         @endphp
 
         @if($hasProgram)
-            <a href="{{ asset('storage/program.pdf') }}"
+            <a href="{{ asset("storage/{$programFile}") }}"
                target="_blank"
                class="mt-6 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/10 px-5 py-2 text-sm font-medium text-amber-300 transition hover:border-amber-500/40 hover:bg-amber-500/20">
                 <flux:icon.document-text variant="mini" class="size-4" />
