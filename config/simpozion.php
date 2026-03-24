@@ -19,8 +19,8 @@ return [
         'en' => env('SIMPOZION_EVENT_EDITION_EN', '12th Edition'),
     ],
     'event_date' => [
-        'ro' => env('SIMPOZION_EVENT_DATE', '23 mai 2026'),
-        'en' => env('SIMPOZION_EVENT_DATE_EN', 'May 23, 2026'),
+        'ro' => env('SIMPOZION_EVENT_DATE', '22-24 mai 2026'),
+        'en' => env('SIMPOZION_EVENT_DATE_EN', 'May 22-24, 2026'),
     ],
 
     'events' => [
@@ -36,6 +36,13 @@ return [
             'datetime' => [
                 'ro' => env('SIMPOZION_SYMPOSIUM_DATETIME', 'Sâmbătă, 23 mai 2026, ora 10:00'),
                 'en' => env('SIMPOZION_SYMPOSIUM_DATETIME_EN', 'Saturday, May 23, 2026, 10:00 AM'),
+            ],
+        ],
+        'companion_lunch' => [
+            'price' => 50,
+            'datetime' => [
+                'ro' => env('SIMPOZION_COMPANION_LUNCH_DATETIME', 'Sâmbătă, 23 mai 2026, ora 13:00'),
+                'en' => env('SIMPOZION_COMPANION_LUNCH_DATETIME_EN', 'Saturday, May 23, 2026, 1:00 PM'),
             ],
         ],
         'ritual' => [

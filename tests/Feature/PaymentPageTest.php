@@ -33,6 +33,7 @@ it('hides payment for zero total', function () {
         'registration_id' => $registration->id,
         'friday_dinner_count' => 0,
         'symposium_lunch_count' => 0,
+        'companion_lunch_count' => 0,
         'ball_count' => 0,
         'ritual_participation' => true,
     ]);

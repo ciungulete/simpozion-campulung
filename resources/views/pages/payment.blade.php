@@ -49,6 +49,9 @@
                         @if($participant->symposium_lunch_count > 0)
                             <div>{{ __('Symposium + Saturday Lunch') }}: {{ $participant->symposium_lunch_count }} {{ __('persons') }} × {{ config('simpozion.events.symposium_lunch.price') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.events.symposium_lunch.price') }} lei</div>
                         @endif
+                        @if($participant->companion_lunch_count > 0)
+                            <div>{{ __('Lunch (for companions)') }}: {{ $participant->companion_lunch_count }} {{ __('persons') }} × {{ config('simpozion.events.companion_lunch.price') }} lei = {{ $participant->companion_lunch_count * config('simpozion.events.companion_lunch.price') }} lei</div>
+                        @endif
                         @if($participant->ritual_participation)
                             <div>{{ __('Ritual Session Participation_label') }}: {{ __('Yes') }}</div>
                         @endif

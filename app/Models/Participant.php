@@ -24,6 +24,7 @@ class Participant extends Model
             'lodge_number' => 'integer',
             'friday_dinner_count' => 'integer',
             'symposium_lunch_count' => 'integer',
+            'companion_lunch_count' => 'integer',
             'ritual_participation' => 'boolean',
             'ball_count' => 'integer',
         ];
@@ -53,12 +54,13 @@ class Participant extends Model
         return self::computeCost([
             'friday_dinner_count' => $this->friday_dinner_count,
             'symposium_lunch_count' => $this->symposium_lunch_count,
+            'companion_lunch_count' => $this->companion_lunch_count,
             'ball_count' => $this->ball_count,
         ], $prices);
     }
 
     /**
-     * @param  array{friday_dinner_count?: int, symposium_lunch_count?: int, ball_count?: int}  $data
+     * @param  array{friday_dinner_count?: int, symposium_lunch_count?: int, companion_lunch_count?: int, ball_count?: int}  $data
      * @param  array<string, int>|null  $prices
      */
     public static function computeCost(array $data, ?array $prices = null): int
@@ -66,11 +68,13 @@ class Participant extends Model
         $prices ??= [
             'friday_dinner' => config('simpozion.events.friday_dinner.price'),
             'symposium_lunch' => config('simpozion.events.symposium_lunch.price'),
+            'companion_lunch' => config('simpozion.events.companion_lunch.price'),
             'ball' => config('simpozion.events.ball.price'),
         ];
 
         return (($data['friday_dinner_count'] ?? 0) * $prices['friday_dinner'])
             + (($data['symposium_lunch_count'] ?? 0) * $prices['symposium_lunch'])
+            + (($data['companion_lunch_count'] ?? 0) * $prices['companion_lunch'])
             + (($data['ball_count'] ?? 0) * $prices['ball']);
     }
 }

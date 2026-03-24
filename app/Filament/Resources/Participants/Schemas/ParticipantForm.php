@@ -51,6 +51,10 @@ class ParticipantForm
                     ->required()
                     ->numeric()
                     ->default(0),
+                TextInput::make('companion_lunch_count')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
                 Toggle::make('ritual_participation')
                     ->required(),
                 TextInput::make('ball_count')

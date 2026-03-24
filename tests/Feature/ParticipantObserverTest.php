@@ -12,6 +12,7 @@ it('updates registration total on participant save', function () {
         'registration_id' => $registration->id,
         'friday_dinner_count' => 1,
         'symposium_lunch_count' => 0,
+        'companion_lunch_count' => 0,
         'ball_count' => 0,
     ]);
 
@@ -30,6 +31,7 @@ it('updates registration total on participant delete', function () {
         'registration_id' => $registration->id,
         'friday_dinner_count' => 1,
         'symposium_lunch_count' => 0,
+        'companion_lunch_count' => 0,
         'ball_count' => 0,
     ]);
 
@@ -37,6 +39,7 @@ it('updates registration total on participant delete', function () {
         'registration_id' => $registration->id,
         'friday_dinner_count' => 2,
         'symposium_lunch_count' => 0,
+        'companion_lunch_count' => 0,
         'ball_count' => 0,
     ]);
 
@@ -55,6 +58,7 @@ it('recalculates total from participants', function () {
         'registration_id' => $registration->id,
         'friday_dinner_count' => 2,
         'symposium_lunch_count' => 1,
+        'companion_lunch_count' => 0,
         'ball_count' => 1,
     ]);
 
@@ -62,6 +66,7 @@ it('recalculates total from participants', function () {
     $expected = Participant::computeCost([
         'friday_dinner_count' => $participant->friday_dinner_count,
         'symposium_lunch_count' => $participant->symposium_lunch_count,
+        'companion_lunch_count' => $participant->companion_lunch_count,
         'ball_count' => $participant->ball_count,
     ]);
     expect($registration->total_amount)->toBe($expected);

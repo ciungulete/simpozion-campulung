@@ -89,6 +89,10 @@ class RegistrationForm
                                     ->label('Simpozion + Prânz')
                                     ->disabled()
                                     ->suffix('pers'),
+                                TextInput::make('companion_lunch_count')
+                                    ->label('Prânz (însoțitoare)')
+                                    ->disabled()
+                                    ->suffix('pers'),
                                 Toggle::make('ritual_participation')
                                     ->label('Ținută rituală')
                                     ->disabled(),

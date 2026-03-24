@@ -29,6 +29,9 @@
             @if($participant->symposium_lunch_count > 0)
                 <li>Simpozion + Prânz: {{ $participant->symposium_lunch_count }} pers × {{ config('simpozion.events.symposium_lunch.price') }} lei = {{ $participant->symposium_lunch_count * config('simpozion.events.symposium_lunch.price') }} lei</li>
             @endif
+            @if($participant->companion_lunch_count > 0)
+                <li>Prânz (pentru însoțitoare): {{ $participant->companion_lunch_count }} pers × {{ config('simpozion.events.companion_lunch.price') }} lei = {{ $participant->companion_lunch_count * config('simpozion.events.companion_lunch.price') }} lei</li>
+            @endif
             @if($participant->ritual_participation)
                 <li>Participare ținută rituală: Da</li>
             @endif

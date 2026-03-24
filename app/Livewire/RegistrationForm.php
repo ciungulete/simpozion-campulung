@@ -52,6 +52,7 @@ class RegistrationForm extends Component
             'phone' => '',
             'friday_dinner_count' => 0,
             'symposium_lunch_count' => 0,
+            'companion_lunch_count' => 0,
             'ritual_participation' => false,
             'ball_count' => 0,
             'observations' => '',
@@ -131,6 +132,7 @@ class RegistrationForm extends Component
                     'phone' => $participantData['phone'],
                     'friday_dinner_count' => $participantData['friday_dinner_count'] ?: 0,
                     'symposium_lunch_count' => $participantData['symposium_lunch_count'] ?: 0,
+                    'companion_lunch_count' => $participantData['companion_lunch_count'] ?: 0,
                     'ritual_participation' => $participantData['ritual_participation'] ?? false,
                     'ball_count' => $participantData['ball_count'] ?: 0,
                     'observations' => $participantData['observations'] ?: null,
@@ -178,6 +180,7 @@ class RegistrationForm extends Component
             $rules["participants.{$index}.phone"] = ['required', 'string', 'max:20'];
             $rules["participants.{$index}.friday_dinner_count"] = ['required', 'integer', 'min:0', "max:{$maxCount}"];
             $rules["participants.{$index}.symposium_lunch_count"] = ['required', 'integer', 'min:0', "max:{$maxCount}"];
+            $rules["participants.{$index}.companion_lunch_count"] = ['required', 'integer', 'min:0', "max:{$maxCount}"];
             $rules["participants.{$index}.ritual_participation"] = ['boolean'];
             $rules["participants.{$index}.ball_count"] = ['required', 'integer', 'min:0', "max:{$maxCount}"];
             $rules["participants.{$index}.observations"] = ['nullable', 'string'];
@@ -206,6 +209,7 @@ class RegistrationForm extends Component
             $attributes["participants.{$index}.phone"] = "Participant {$num} - Telefon";
             $attributes["participants.{$index}.friday_dinner_count"] = "Participant {$num} - Cină vineri";
             $attributes["participants.{$index}.symposium_lunch_count"] = "Participant {$num} - Simpozion + Prânz";
+            $attributes["participants.{$index}.companion_lunch_count"] = "Participant {$num} - Prânz (pentru însoțitoare)";
             $attributes["participants.{$index}.ball_count"] = "Participant {$num} - Bal";
         }
 

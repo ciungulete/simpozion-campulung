@@ -15,6 +15,7 @@ class EventParticipationStats extends StatsOverviewWidget
         return [
             Stat::make('Cină vineri', Participant::query()->sum('friday_dinner_count').' persoane'),
             Stat::make('Simpozion + Prânz', Participant::query()->sum('symposium_lunch_count').' persoane'),
+            Stat::make('Prânz (însoțitoare)', Participant::query()->sum('companion_lunch_count').' persoane'),
             Stat::make('Ținută rituală', Participant::query()->where('ritual_participation', true)->count().' participanți'),
             Stat::make('Bal', Participant::query()->sum('ball_count').' persoane'),
         ];

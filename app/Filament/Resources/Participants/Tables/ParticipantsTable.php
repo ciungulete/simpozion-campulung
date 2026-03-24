@@ -47,6 +47,9 @@ class ParticipantsTable
                 TextColumn::make('symposium_lunch_count')
                     ->label('Simpozion')
                     ->sortable(),
+                TextColumn::make('companion_lunch_count')
+                    ->label('Prânz însoț.')
+                    ->sortable(),
                 IconColumn::make('ritual_participation')
                     ->label('Ritual')
                     ->boolean(),

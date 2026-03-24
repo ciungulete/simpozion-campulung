@@ -181,6 +181,26 @@ use App\Enums\Prefix;
                                 </div>
                             </div>
 
+                            {{-- Companion lunch (Saturday) --}}
+                            <div class="flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
+                                <div class="min-w-0 flex-1">
+                                    <div class="text-sm font-medium text-white/90">{{ __('Lunch (for companions)') }}</div>
+                                    <div class="text-xs text-amber-400/70">{{ config('simpozion.events.companion_lunch.price') }} {{ __('lei / person') }}</div>
+                                    <div class="text-[11px] text-white/30">{{ config("simpozion.events.companion_lunch.datetime.{$locale}") }}</div>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <button type="button" wire:click="decrementCount({{ $index }}, 'companion_lunch_count')"
+                                            class="flex size-8 items-center justify-center rounded-lg border border-white/10 text-white/60 transition hover:border-white/20 hover:bg-white/5 hover:text-white">
+                                        <flux:icon.minus variant="micro" class="size-3.5" />
+                                    </button>
+                                    <span class="w-8 text-center text-sm font-semibold text-white">{{ $participant['companion_lunch_count'] }}</span>
+                                    <button type="button" wire:click="incrementCount({{ $index }}, 'companion_lunch_count')"
+                                            class="flex size-8 items-center justify-center rounded-lg border border-white/10 text-white/60 transition hover:border-amber-500/30 hover:bg-amber-500/10 hover:text-amber-400">
+                                        <flux:icon.plus variant="micro" class="size-3.5" />
+                                    </button>
+                                </div>
+                            </div>
+
                             {{-- Ritual participation --}}
                             <div class="flex items-center justify-between rounded-xl border border-white/[0.06] px-4 py-3 {{ $participant['ritual_participation'] ? 'bg-amber-500/10 border-amber-500/20' : 'bg-white/[0.02]' }}">
                                 <div class="min-w-0 flex-1">

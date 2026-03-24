@@ -28,6 +28,7 @@ class ParticipantFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'friday_dinner_count' => fake()->numberBetween(0, 3),
             'symposium_lunch_count' => fake()->numberBetween(0, 3),
+            'companion_lunch_count' => fake()->numberBetween(0, 3),
             'ritual_participation' => fake()->boolean(),
             'ball_count' => fake()->numberBetween(0, 3),
             'observations' => fake()->optional()->sentence(),
