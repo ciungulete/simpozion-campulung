@@ -123,6 +123,57 @@
         </div>
     @endif
 
+    {{-- Recommended Accommodations --}}
+    @if($accommodations->isNotEmpty())
+        <div class="mt-8">
+            <div class="mb-4 text-center">
+                <div class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/80">{{ __('Recommended Accommodations') }}</div>
+                <p class="text-sm text-white/40">{{ __('We recommend the following accommodations near the event venue:') }}</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                @foreach($accommodations as $accommodation)
+                    <div class="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03]">
+                        @if($accommodation->image)
+                            <img src="{{ asset('storage/' . $accommodation->image) }}"
+                                 alt="{{ $accommodation->name }}"
+                                 class="h-44 w-full object-cover" />
+                        @endif
+
+                        <div class="p-5">
+                            <h3 class="text-sm font-semibold text-amber-400">{{ $accommodation->name }}</h3>
+
+                            @if($accommodation->pricing)
+                                <div class="mt-2">
+                                    <span class="text-[11px] font-medium uppercase tracking-wider text-white/30">{{ __('Room pricing') }}</span>
+                                    <p class="mt-0.5 text-xs text-white/60">{!! nl2br(e($accommodation->pricing)) !!}</p>
+                                </div>
+                            @endif
+
+                            <div class="mt-3 flex flex-wrap items-center gap-2">
+                                @if($accommodation->phone)
+                                    <a href="tel:{{ $accommodation->phone }}"
+                                       class="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-white/70 transition hover:bg-white/[0.08] hover:text-white">
+                                        <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" /></svg>
+                                        {{ $accommodation->phone }}
+                                    </a>
+                                @endif
+                                @if($accommodation->website)
+                                    <a href="{{ $accommodation->website }}"
+                                       target="_blank"
+                                       class="inline-flex items-center gap-1.5 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-1.5 text-xs font-medium text-amber-400 transition hover:bg-amber-500/20">
+                                        <svg class="size-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                                        {{ __('Visit website') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     {{-- WhatsApp Group --}}
     @if(config('simpozion.whatsapp_group_link'))
         <div class="mt-8 overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-6 text-center">
