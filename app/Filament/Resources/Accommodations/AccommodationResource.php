@@ -28,17 +28,17 @@ class AccommodationResource extends Resource
 
     public static function canCreate(): bool
     {
-        return auth()->id() === 1;
+        return auth()->id() === 1 || auth()->id() === 2;
     }
 
     public static function canEdit($record): bool
     {
-        return auth()->id() === 1;
+        return auth()->id() === 1 || auth()->id() === 2;
     }
 
     public static function canDelete($record): bool
     {
-        return auth()->id() === 1;
+        return auth()->id() === 1 || auth()->id() === 2;
     }
 
     public static function form(Schema $schema): Schema
