@@ -135,7 +135,7 @@
                 @foreach($accommodations as $accommodation)
                     <div class="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03]">
                         @if($accommodation->image)
-                            <img src="{{ asset('storage/' . $accommodation->image) }}"
+                            <img src="{{ Storage::disk('public')->url($accommodation->image) }}"
                                  alt="{{ $accommodation->name }}"
                                  class="h-44 w-full object-cover" />
                         @endif
