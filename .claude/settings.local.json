@@ -20,7 +20,9 @@
       "Bash(grep -r 'class Section' /Users/ciungulete/Sites/simpozion/vendor/filament/ --include=*.php -l)",
       "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.friday_dinner''\\)/config\\(''simpozion.events.friday_dinner.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)",
       "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.symposium_lunch''\\)/config\\(''simpozion.events.symposium_lunch.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)",
-      "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.ball''\\)/config\\(''simpozion.events.ball.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)"
+      "Bash(sed -i '' \"s/config\\(''simpozion\\\\.prices\\\\.ball''\\)/config\\(''simpozion.events.ball.price''\\)/g\" resources/views/pages/payment.blade.php resources/views/mail/registration-confirmation.blade.php)",
+      "Bash(ls:*)",
+      "mcp__laravel-boost__database-query"
     ]
   },
   "enabledMcpjsonServers": [
