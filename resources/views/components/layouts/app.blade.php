@@ -20,16 +20,16 @@
     <meta property="og:url" content="{{ $ogUrl }}">
     <meta property="og:locale" content="{{ $locale === 'ro' ? 'ro_RO' : 'en_US' }}">
     <meta property="og:site_name" content="{{ config("simpozion.event_name.{$locale}") }}">
-    @if(file_exists(public_path('og-image.jpg')))
-        <meta property="og:image" content="{{ asset('og-image.jpg') }}">
+    @if(file_exists(public_path('og-image.jpeg')))
+        <meta property="og:image" content="{{ asset('og-image.jpeg') }}">
     @endif
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $ogTitle }}">
     <meta name="twitter:description" content="{{ $ogDescription }}">
-    @if(file_exists(public_path('og-image.jpg')))
-        <meta name="twitter:image" content="{{ asset('og-image.jpg') }}">
+    @if(file_exists(public_path('og-image.jpeg')))
+        <meta name="twitter:image" content="{{ asset('og-image.jpeg') }}">
     @endif
 
     {{-- General meta --}}
