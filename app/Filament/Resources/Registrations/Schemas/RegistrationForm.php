@@ -54,55 +54,40 @@ class RegistrationForm
                             ->schema([
                                 Select::make('prefix')
                                     ->label('Prefix')
-                                    ->options(Prefix::class)
-                                    ->disabled(),
+                                    ->options(Prefix::class),
                                 TextInput::make('full_name')
-                                    ->label('Nume și Prenume')
-                                    ->disabled(),
+                                    ->label('Nume și Prenume'),
                                 Select::make('degree')
                                     ->label('Grad')
-                                    ->options(Degree::class)
-                                    ->disabled(),
+                                    ->options(Degree::class),
                                 TextInput::make('dignity')
-                                    ->label('Demnitate')
-                                    ->disabled(),
+                                    ->label('Demnitate'),
                                 TextInput::make('lodge_name')
-                                    ->label('Loja')
-                                    ->disabled(),
+                                    ->label('Loja'),
                                 TextInput::make('lodge_number')
-                                    ->label('Nr.')
-                                    ->disabled(),
+                                    ->label('Nr.'),
                                 TextInput::make('orient')
-                                    ->label('Orient')
-                                    ->disabled(),
+                                    ->label('Orient'),
                                 TextInput::make('email')
-                                    ->label('Email')
-                                    ->disabled(),
+                                    ->label('Email'),
                                 TextInput::make('phone')
-                                    ->label('Telefon')
-                                    ->disabled(),
+                                    ->label('Telefon'),
                                 TextInput::make('friday_dinner_count')
                                     ->label('Cină vineri')
-                                    ->disabled()
                                     ->suffix('pers'),
                                 TextInput::make('symposium_lunch_count')
                                     ->label('Simpozion + Prânz')
-                                    ->disabled()
                                     ->suffix('pers'),
                                 TextInput::make('companion_lunch_count')
                                     ->label('Prânz (însoțitoare)')
-                                    ->disabled()
                                     ->suffix('pers'),
                                 Toggle::make('ritual_participation')
-                                    ->label('Ținută rituală')
-                                    ->disabled(),
+                                    ->label('Ținută rituală'),
                                 TextInput::make('ball_count')
                                     ->label('Bal')
-                                    ->disabled()
                                     ->suffix('pers'),
                                 Textarea::make('observations')
                                     ->label('Observații')
-                                    ->disabled()
                                     ->columnSpanFull(),
                             ])
                             ->columns(3)
