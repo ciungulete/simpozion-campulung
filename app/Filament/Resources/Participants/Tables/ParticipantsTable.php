@@ -16,6 +16,9 @@ class ParticipantsTable
         return $table
             ->modifyQueryUsing(fn ($query) => $query->with('registration'))
             ->columns([
+                TextColumn::make('id')
+                    ->label('ID')
+                    ->sortable(),
                 TextColumn::make('registration.uuid')
                     ->label('Referință')
                     ->formatStateUsing(fn (string $state) => strtoupper(substr($state, 0, 8)))
