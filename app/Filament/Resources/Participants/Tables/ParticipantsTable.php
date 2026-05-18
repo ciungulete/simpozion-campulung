@@ -2,10 +2,11 @@
 
 namespace App\Filament\Resources\Participants\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
+use App\Models\Participant;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ParticipantsTable
@@ -13,11 +14,13 @@ class ParticipantsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn ($query) => $query->with('registration'))
             ->columns([
                 TextColumn::make('registration.uuid')
                     ->label('Referință')
                     ->formatStateUsing(fn (string $state) => strtoupper(substr($state, 0, 8)))
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('prefix')
                     ->badge()
                     ->searchable(),
@@ -56,6 +59,12 @@ class ParticipantsTable
                 TextColumn::make('ball_count')
                     ->label('Bal')
                     ->sortable(),
+                TextColumn::make('remaining_due')
+                    ->label('Rest de plată')
+                    ->badge()
+                    ->getStateUsing(fn (Participant $record): int => $record->registration?->remainingAmount() ?? 0)
+                    ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
+                    ->color(fn (int $state): string => $state === 0 ? 'success' : 'danger'),
                 TextColumn::make('created_at')
                     ->label('Data')
                     ->dateTime('d.m.Y H:i')
@@ -63,11 +72,33 @@ class ParticipantsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('created_at', 'desc')
-            ->recordActions([])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->filters([
+                SelectFilter::make('lodge_number')
+                    ->label('Nr. Loja')
+                    ->multiple()
+                    ->searchable()
+                    ->options(fn (): array => Participant::query()
+                        ->whereNotNull('lodge_number')
+                        ->distinct()
+                        ->orderBy('lodge_number')
+                        ->pluck('lodge_number', 'lodge_number')
+                        ->all()),
+                SelectFilter::make('orient')
+                    ->label('Orient')
+                    ->multiple()
+                    ->searchable()
+                    ->options(fn (): array => Participant::query()
+                        ->whereNotNull('orient')
+                        ->where('orient', '!=', '')
+                        ->distinct()
+                        ->orderBy('orient')
+                        ->pluck('orient', 'orient')
+                        ->all()),
+            ], layout: FiltersLayout::AboveContent)
+            ->filtersFormColumns(2)
+            ->paginated([25, 50, 100, 200])
+            ->defaultPaginationPageOption(50)
+            ->striped()
+            ->recordActions([]);
     }
 }
