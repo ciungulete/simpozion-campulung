@@ -45,13 +45,13 @@ class ParticipantsTable
                     ->label('Telefon')
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('friday_dinner_count')
-                    ->label('Cină')
+                    ->label('V')
                     ->sortable(),
                 TextColumn::make('symposium_lunch_count')
-                    ->label('Simpozion')
+                    ->label('Si')
                     ->sortable(),
                 TextColumn::make('companion_lunch_count')
-                    ->label('Prânz însoț.')
+                    ->label('P')
                     ->sortable(),
                 IconColumn::make('ritual_participation')
                     ->label('Ritual')
@@ -60,7 +60,7 @@ class ParticipantsTable
                     ->label('Bal')
                     ->sortable(),
                 TextColumn::make('remaining_due')
-                    ->label('Rest de plată')
+                    ->label('Rest')
                     ->badge()
                     ->getStateUsing(fn (Participant $record): int => $record->registration?->remainingAmount() ?? 0)
                     ->formatStateUsing(fn (int $state) => number_format($state, 0, ',', '.').' lei')
