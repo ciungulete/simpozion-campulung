@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Participants\Tables;
 
+use App\Filament\Resources\Participants\Actions\ExportParticipantsAction;
 use App\Models\Participant;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -15,6 +16,9 @@ class ParticipantsTable
     {
         return $table
             ->modifyQueryUsing(fn ($query) => $query->with('registration'))
+            ->headerActions([
+                ExportParticipantsAction::make(),
+            ])
             ->columns([
                 TextColumn::make('id')
                     ->label('ID')
