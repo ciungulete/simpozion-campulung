@@ -48,11 +48,11 @@ class ParticipantsTable
                     ->searchable(),
                 TextColumn::make('lodge_number')
                     ->label('Nr.')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('orient')
                     ->searchable(),
                 TextColumn::make('email')
-                    ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('phone')
                     ->label('Telefon')
