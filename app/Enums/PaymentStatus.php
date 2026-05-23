@@ -8,6 +8,7 @@ enum PaymentStatus: string
     case Revolut = 'revolut';
     case Bcr = 'bcr';
     case Cash = 'cash';
+    case Invitat = 'invitat';
 
     public function label(): string
     {
@@ -16,6 +17,7 @@ enum PaymentStatus: string
             self::Revolut => 'Revolut',
             self::Bcr => 'BCR',
             self::Cash => 'Cash',
+            self::Invitat => 'Invitat',
         };
     }
 
@@ -26,6 +28,7 @@ enum PaymentStatus: string
             self::Revolut => 'info',
             self::Bcr => 'success',
             self::Cash => 'gray',
+            self::Invitat => 'primary',
         };
     }
 

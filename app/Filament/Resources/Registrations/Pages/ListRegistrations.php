@@ -33,6 +33,9 @@ class ListRegistrations extends ListRecords
             'cash' => Tab::make('Cash')
                 ->modifyQueryUsing(fn (Builder $query) => $query->where('payment_status', PaymentStatus::Cash))
                 ->icon('heroicon-o-banknotes'),
+            'invitat' => Tab::make('Invitat')
+                ->modifyQueryUsing(fn (Builder $query) => $query->where('payment_status', PaymentStatus::Invitat))
+                ->icon('heroicon-o-user-plus'),
         ];
     }
 }

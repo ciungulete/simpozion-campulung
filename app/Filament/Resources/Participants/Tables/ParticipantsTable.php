@@ -2,13 +2,16 @@
 
 namespace App\Filament\Resources\Participants\Tables;
 
+use App\Enums\PaymentStatus;
 use App\Filament\Resources\Participants\Actions\ExportParticipantsAction;
+use App\Filament\Resources\Registrations\RegistrationResource;
 use App\Models\Participant;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Enums\FiltersLayout;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ParticipantsTable
 {
@@ -33,7 +36,10 @@ class ParticipantsTable
                     ->searchable(),
                 TextColumn::make('full_name')
                     ->label('Nume')
-                    ->searchable(),
+                    ->searchable()
+                    ->url(fn (Participant $record): ?string => $record->registration
+                        ? RegistrationResource::getUrl('edit', ['record' => $record->registration])
+                        : null),
                 TextColumn::make('degree')
                     ->label('Grad')
                     ->badge(),
@@ -80,6 +86,15 @@ class ParticipantsTable
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
+                SelectFilter::make('payment_status')
+                    ->label('Status plată')
+                    ->multiple()
+                    ->options(collect(PaymentStatus::cases())
+                        ->mapWithKeys(fn (PaymentStatus $status) => [$status->value => $status->label()])
+                        ->all())
+                    ->query(fn (Builder $query, array $data): Builder => $query
+                        ->when($data['values'] ?? [], fn (Builder $query, array $values) => $query
+                            ->whereHas('registration', fn (Builder $q) => $q->whereIn('payment_status', $values)))),
                 SelectFilter::make('lodge_number')
                     ->label('Nr. Loja')
                     ->multiple()

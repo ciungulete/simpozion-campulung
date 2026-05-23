@@ -8,6 +8,8 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\FiltersLayout;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class RegistrationsTable
@@ -66,6 +68,14 @@ class RegistrationsTable
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
+            ->filters([
+                SelectFilter::make('payment_status')
+                    ->label('Status plată')
+                    ->multiple()
+                    ->options(collect(PaymentStatus::cases())
+                        ->mapWithKeys(fn (PaymentStatus $status) => [$status->value => $status->label()])
+                        ->all()),
+            ], layout: FiltersLayout::AboveContent)
             ->recordActions([
                 EditAction::make(),
             ])
