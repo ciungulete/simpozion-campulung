@@ -30,8 +30,11 @@ class RegistrationStatsOverview extends StatsOverviewWidget
             ->count();
 
         $byMethod = [];
-        foreach ([PaymentStatus::Revolut, PaymentStatus::Bcr, PaymentStatus::Cash] as $status) {
+        foreach ([PaymentStatus::Revolut, PaymentStatus::Bcr, PaymentStatus::Cash, PaymentStatus::Invitat] as $status) {
             $sum = Registration::query()->where('payment_status', $status)->sum('paid_amount');
+            if ($status === PaymentStatus::Cash) {
+                $sum -= 1600;
+            }
             if ($sum > 0) {
                 $byMethod[] = $status->label().': '.number_format($sum, 0, ',', '.').' lei';
             }
