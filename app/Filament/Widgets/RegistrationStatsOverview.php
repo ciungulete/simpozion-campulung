@@ -15,7 +15,7 @@ class RegistrationStatsOverview extends StatsOverviewWidget
         $totalRegistrations = Registration::query()->count();
         $totalParticipants = Participant::query()->count();
 
-        $paidTotal = Registration::query()->sum('paid_amount');
+        $paidTotal = Registration::query()->sum('paid_amount') - 1600;
 
         $pendingTotal = Registration::query()
             ->selectRaw('SUM(total_amount - paid_amount) as remaining')
