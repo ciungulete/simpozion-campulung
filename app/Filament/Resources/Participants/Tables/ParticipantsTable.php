@@ -20,7 +20,7 @@ class ParticipantsTable
         return $table
             ->modifyQueryUsing(fn ($query) => $query->with('registration'))
             ->headerActions([
-                ExportParticipantsAction::make(),
+//                ExportParticipantsAction::make(),
             ])
             ->columns([
                 TextColumn::make('id')
